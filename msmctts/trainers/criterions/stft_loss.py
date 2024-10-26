@@ -82,7 +82,7 @@ class MelLoss(nn.Module):
             print('max value is ', torch.max(y))
 
         if self.fmax not in self.mel_basis:
-            mel = librosa_mel_fn(self.sample_rate, self.fft_size, self.num_mels, self.fmin, self.fmax)
+            mel = librosa_mel_fn(sr=self.sample_rate, n_fft=self.fft_size, n_mels=self.num_mels, fmin=self.fmin, fmax=self.fmax)
             self.mel_basis[str(self.fmax) + '_' + str(y.device)] = torch.from_numpy(mel).float().to(y.device)
             self.hann_window[str(y.device)] = torch.hann_window(self.win_size).to(y.device)
 
@@ -97,10 +97,10 @@ class MelLoss(nn.Module):
                           win_length=self.win_size,
                           window=self.hann_window[str(y.device)],
                           center=center, pad_mode='reflect',
-                          normalized=False, onesided=True)
+                          normalized=False, onesided=True, return_complex=False)
 
         spec = torch.sqrt(spec.pow(2).sum(-1) + 1e-9)
-
+        
         spec = torch.matmul(self.mel_basis[str(self.fmax) + '_' + str(y.device)], spec)
         spec = self.spectral_normalize_torch(spec)
 

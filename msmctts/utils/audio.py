@@ -397,7 +397,7 @@ class TorchSTFT(torch.nn.Module):
         
     def transform(self, x):
         x_stft = torch.stft(x, self.fft_size, self.hop_size, self.win_size,
-                            self.window.type_as(x), normalized=self.normalized)
+                            self.window.type_as(x), normalized=self.normalized, return_complex=False)
         real = x_stft[..., 0]
         imag = x_stft[..., 1]
         mag = torch.clamp(real ** 2 + imag ** 2, min=1e-7)
