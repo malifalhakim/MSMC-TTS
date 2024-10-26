@@ -47,7 +47,7 @@ task:
             fused_layernorm: False
     autoencoder:
         _config: examples/csmsc/configs/msmc_vq_gan.yaml
-        _checkpoint: examples/csmsc/checkpoints/msmc_vq_gan/model_800000
+        _checkpoint: examples/csmsc/checkpoints/msmc_vq_gan/model_10
         _trainable: False
 
 #################################################

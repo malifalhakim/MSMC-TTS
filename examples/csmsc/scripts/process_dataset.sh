@@ -8,7 +8,7 @@ mkdir -p $dir_out
 # Audio Processing
 sample_rate=24000
 dir_in_wav=${dir_in}/Wave
-dir_wav=${dir_out}/wav_${sample_rate/1000}k
+dir_wav=${dir_out}/wav_24k
 dir_mel=${dir_out}/mel
 
 mkdir -p $dir_wav $dir_mel
