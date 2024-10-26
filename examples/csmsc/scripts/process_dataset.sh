@@ -13,7 +13,7 @@ dir_mel=${dir_out}/mel
 
 mkdir -p $dir_wav $dir_mel
 bash audio/audio_normalization.sh $dir_in_wav $dir_wav $sample_rate
-python audio/melspectrogram.py $dir_in $dir_mel
+python audio/melspectrogram.py $dir_wav $dir_mel
 
 # Text Processing
 dir_in_text=${dir_in}/PhoneLabeling

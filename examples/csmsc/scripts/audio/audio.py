@@ -108,7 +108,8 @@ def _mel_to_linear(mel_spectrogram):
 
 def _build_mel_basis():
     n_fft = (hparams.num_freq - 1) * 2
-    return librosa.filters.mel(hparams.sample_rate, n_fft, htk=False, n_mels=hparams.num_mels)
+    return librosa.filters.mel(sr=hparams.sample_rate, n_fft=n_fft, n_mels=hparams.num_mels, htk=False)
+
 
 
 def _amp_to_db(x):
